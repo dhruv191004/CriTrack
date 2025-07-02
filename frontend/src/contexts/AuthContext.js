@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, startTransition } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext(null);
@@ -20,12 +20,16 @@ export function AuthProvider({ children }) {
   const fetchUser = async () => {
     try {
       const response = await axios.get('/api/auth/me');
-      setUser(response.data);
-      setLoading(false);
+      startTransition(() => {
+        setUser(response.data);
+        setLoading(false);
+      });
     } catch (error) {
       localStorage.removeItem('token');
-      setUser(null);
-      setLoading(false);
+      startTransition(() => {
+        setUser(null);
+        setLoading(false);
+      });
     }
   };
 

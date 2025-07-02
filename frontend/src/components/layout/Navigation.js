@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, startTransition } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -10,7 +10,7 @@ const Navigation = () => {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate('/');
+      startTransition(() => navigate('/'));
     } catch (error) {
       console.error('Logout error:', error);
     }
@@ -31,7 +31,9 @@ const Navigation = () => {
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <button
-                onClick={() => navigate('/match-setup')}
+                onClick={() => {
+                  startTransition(() => navigate('/match-setup'))
+                }}
                 className="text-xl font-bold text-indigo-600"
               >
                 Critrack
@@ -41,7 +43,9 @@ const Navigation = () => {
               {navigation.map((item) => (
                 <button
                   key={item.name}
-                  onClick={() => navigate(item.href)}
+                  onClick={() => {
+                    startTransition(() => navigate(item.href))
+                  }}
                   className="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                 >
                   {item.name}
