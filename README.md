@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Critrack - Cricket Scoring App
 
 A modern Progressive Web App (PWA) for cricket scoring built with the MERN stack.
@@ -77,3 +78,6 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 ## License
 
 MIT
+=======
+# CriTrack
+>>>>>>> 4e4c8a689f6e67cac2de6e0f548d263d831b254d
